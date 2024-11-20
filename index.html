@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greeting</title>
+    <style>
+        body{
+            text-align: center;
+            background-color: #c0c0c0;
+        }
+        h2 {
+            font-size: 40px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        p {
+            font-size: 20px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        input{
+            border-radius: 10px;
+            padding: 5px;
+        }
+        button {
+            padding: 3px;
+            border-radius: 5px;
+        }
+        hr{
+            border: 0;
+            border: 1px solid black;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h2> Assignment No 1</h2>
+    <h2> Greeting Message: </h2>
+    <div class="container">
+        <p> Enter your greeting message here:</p>
+        <label for="hello"> </label>
+        <input type="text" name="hello" id="greeting" placeholder="enter your message here:" required> <br><br>
+        <button onclick="Greetingdisplay()"> Submit</button><br><br><br>
+        <div id="GreetingMessage"></div><br><br><br><br>
+        <hr><br><br>
+        <h2> Assignment No 2</h2>
+        <h2> Simple Calculator</h2>
+        <form id="calculator" onsubmit="return false;">
+            <input type="number" id="num1" placeholder="enter any number">
+            <select id="operator">
+                <option value="+"> + </option>
+                <option value="-"> - </option>
+                <option value="/"> / </option>
+                <option value="*"> * </option>
+            </select>
+            <input type="number" id="num2" placeholder="enter any number">
+            <button onclick="Calculate()"> Calculate </button>
+        </form>
+        <h2> Result: <div id="result"></div></h2>
+    
+    </div><br><br><br>
+    <hr><br><br>
+    <h2> Assignment No 3</h2> <br>
+    <form>
+        <h2> Find The Largest Number </h2>
+        <label for="num4"> Enter First Number: </label>
+        <input type="number" id="num4" placeholder="Enter number" required><br><br>
+        <label for="num5"> Enter Second Number: </label>
+        <input type="number" id="num5" placeholder="Enter number" required><br><br>
+        <label for="num6"> Enter Third Number: </label>
+        <input type="number" id="num6" placeholder="Enter number" required><br><br>
+        <button type="button" onclick="LargestNum()">Find</button>
+    </form>
+    <h3> Result: <span id="result2"></span></h3> <br><br>
+    <hr><br>
+    <h2> Assignment No 4</h2>
+    <h2> Check Even Or Odd Numbers</h2>
+    <form>
+        <label for="num7"> Enter a Number: </label>
+        <input type="number" id="num7" required>
+        <button type="button" onclick="Checkevenorodd()"> Check </button>
+    </form>
+    <h3> Result: <span id="result5"></span></h3><br><br>
+    <hr><br>
+    <h2> Assignment No 5 </h2>
+    <h2> Age Checker </h2>
+    <form>
+        <label for="agegroup"> Enter your age: </label>
+        <input type="number" id="agegroup" placeholder="Enter your age">
+        <button type="button" onclick="Agegroupcheck()"> Check </button>
+    </form>
+    <h3> Result: <span id="result8"></span></h3>
+    
+    <script>
+        function Greetingdisplay(){
+            const message = document.getElementById("greeting").value;
+            document.getElementById("GreetingMessage").textContent = message;
+
+        }
+    </script>
+    <script>
+     function Calculate() {
+        const num1 = parseFloat(document.getElementById('num1').value);
+        const operator = document.getElementById('operator').value;
+        const num2 = parseFloat(document.getElementById('num2').value);
+        let result;
+
+        if (operator === '+') {
+            result= num1 + num2;
+        } else if (operator === '-') {
+            result= num1 - num2;
+        } else if (operator === '*') {
+            result = num1*num2;
+        } else if (operator !== 0) {
+            result= num1 / num2;
+        } else {
+            'Invalid Operator';
+        }
+        document.getElementById('result').textContent = result;
+       }
+    </script>
+    <script>
+         function LargestNum() {
+            // Get input values
+            const num4 = parseFloat(document.getElementById('num4').value);
+            const num5 = parseFloat(document.getElementById('num5').value);
+            const num6 = parseFloat(document.getElementById('num6').value);
+
+            if (isNaN(num4) || isNaN(num5) || isNaN(num6)) {
+                document.getElementById('result2').innerText = "Enter valid numbers for all fields!";
+                return;
+            }
+            const largest = Math.max(num4, num5, num6);
+
+            document.getElementById('result2').innerText = `The Largest Number is: ${largest}`;
+        }
+    </script>
+    <script>
+        function Checkevenorodd() {
+            const num7=parseInt(document.getElementById('num7').value);
+            if(isNaN(num7)) {
+                document.getElementById('result5').innerText = "please enter a valid number";
+                return;
+            }
+            if (num7 % 2 === 0) {
+                document.getElementById('result5').innerText = `${num7} is Even`;
+            } else {
+                document.getElementById('result5').innerText = `${num7} is Odd`;
+            }
+        }
+    </script>
+
+    <script>
+         function Agegroupcheck() {
+        // Get the age value from the input field
+        const age = parseInt(document.getElementById('agegroup').value);
+
+        // Check if the input is a valid number
+        if (isNaN(age)) {
+            document.getElementById('result8').innerHTML = "Please enter a valid age";
+            return;  // Stop further execution if the input is not valid
+        }
+
+        // Define result8 variable to store the result
+        let result8 = '';
+
+        // Determine the age group based on the input
+        if (age <= 12) {
+            result8 = "child";
+        } else if (age >= 13 && age <= 19) {
+            result8 = "teenager";
+        } else if (age >= 20 && age <= 64) {
+            result8 = "adult";
+        } else {
+            result8 = "senior";
+        }
+
+        // Display the result
+        document.getElementById('result8').innerHTML = `According to your age, you are ${result8}.`;
+    }
+    </script>
+</body>
+</html>
